@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Interface with Drafts</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="login.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body>
+    <div class="nav">
+        <button onclick="showContent('bozze')"><i class="material-icons">description</i> Bozze</button>
+        <button onclick="showContent('pubblica')"><i class="material-icons">edit</i> Pubblica</button>
+        <button onclick="showContent('account')"><i class="material-icons">account_circle</i> Account</button>
+        <button onclick="showContent('configurazione')"><i class="material-icons">settings</i> Configurazione</button>
+    </div>
+    <div id="bozze" class="content">
+        <h2>Bozze</h2>
+        <div id="draft-list"></div>
+    </div>
+    <div id="pubblica" class="content">
+        <h2>Pubblica</h2>
+        <form id="publishForm">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+            <label for="body">Body:</label>
+            <textarea id="body" name="body" required></textarea>
+            <label for="tags">Tags:</label>
+            <input type="text" id="tags" name="tags" placeholder="Enter tags separated by commas">
+            <label for="datetime">Publication Date and Time:</label>
+            <input type="text" id="datetime" name="datetime">
+            <label for="community">Choose Community:</label>
+            <select id="community" name="community">
+                <option value="">Select a community</option>
+            </select>
+            <label for="imageUpload">Upload Image:</label>
+            <input type="file" id="imageUpload" accept="image/*" onchange="uploadImage(this.files[0])">
+            <button type="submit">Publish</button>
+            <button type="button" onclick="saveDraft()">Save as Draft</button>
+        </form>
+    </div>
+    <div id="account" class="content">
+        <h2>Account</h2>
+        <button id="checkLoginBtn">Check Login</button>
+        <h3 id="titleGestionBozze">Gestione Bozze</h3>
+        <ul id="accountList"></ul>
+        <div class="account-actions">
+            <button id="addAccountBtn">Add New Account</button>
+            <button id="logoutBtn">Logout</button>
+        </div>
+        <div id="loginForm" style="display: none;">
+            <h3>Login</h3>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="postingKey" placeholder="Posting Key">
+            <button id="loginBtn">Login</button>
+        </div>
+    </div>
+    <div id="configurazione" class="content">
+        <h2>Configurazione</h2>
+        <p>Adjust your blog configuration settings here.</p>
+        <h3>Choose Color Theme</h3>
+        <div class="theme-chooser">
+            <div class="theme-option" style="background-color: #f0f0f0;" onclick="setTheme('light')"></div>
+            <div class="theme-option" style="background-color: #333333;" onclick="setTheme('dark')"></div>
+            <div class="theme-option" style="background-color: #e6f3ff;" onclick="setTheme('blue')"></div>
+            <div class="theme-option" style="background-color: #fff0f5;" onclick="setTheme('pink')"></div>
+            <div class="theme-option" style="background-color: #f0fff0;" onclick="setTheme('mint')"></div>
+            <div class="theme-option" style="background-color: #fffacd;" onclick="setTheme('lemon')"></div>
+            <div class="theme-option" style="background-color: #ffe4b5;" onclick="setTheme('peach')"></div>
+            <div class="theme-option" style="background-color: #e6e6fa;" onclick="setTheme('lavender')"></div>
+            <div class="theme-option" style="background-color: #f5deb3;" onclick="setTheme('wheat')"></div>
+            <div class="theme-option" style="background-color: #d3ffce;" onclick="setTheme('sage')"></div>
+            <div class="theme-option" style="background-color: #ffdab9;" onclick="setTheme('coral')"></div>
+            <div class="theme-option" style="background-color: #e0ffff;" onclick="setTheme('sky')"></div>
+            <div class="theme-option" style="background-color: #ff4500;" onclick="setTheme('sunset')"></div>
+            <div class="theme-option" style="background-color: #228b22;" onclick="setTheme('forest')"></div>
+            <div class="theme-option" style="background-color: #1e90ff;" onclick="setTheme('ocean')"></div>
+            <div class="theme-option" style="background-color: #d2691e;" onclick="setTheme('autumn')"></div>
+            <div class="theme-option" style="background-color: #4b0082;" onclick="setTheme('galaxy')"></div>
+        </div>        
+        <h3>Nav Button Position</h3>
+        <div class="nav-position-chooser">
+            <button onclick="setNavPosition('top')">Top</button>
+            <button onclick="setNavPosition('bottom')">Bottom</button>
+        </div>
+    </div>
+    <dialog id="telegramIdDialog">
+        <h2>Enter your Telegram ID</h2>
+        <input type="text" id="telegramId" placeholder="Your Telegram ID">
+        <button id="confirmButtonTelegramId">Confirm</button>
+    </dialog>
+    <div id="spinner" class="spinner hide"></div>
+    <script src="main.js"></script>
+</body>
+</html>
