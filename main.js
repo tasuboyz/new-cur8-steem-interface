@@ -55,10 +55,10 @@ async function initializeApp(userId, fromOut) {
         const result = await client.checkLogin(userId);
         console.log(result);
         if (fromOut && (!result.usernames || result.usernames.length === 0)) {
-            document.getElementById('spinner').classList.add('hide');
             displayResult({ error: 'Nessun account trovato' }, 'error', true);
             return;
         }
+        
         const usernames = result.usernames;
         enableNavigationButtons();
         showAccountList(usernames);
@@ -67,6 +67,8 @@ async function initializeApp(userId, fromOut) {
         showContent('account');
         displayResult({ error: 'Effettua il login' }, 'error', true);
         console.error('Error in initialize app:', error);
+    }
+    finally {
         document.getElementById('spinner').classList.add('hide');
     }
 }
@@ -78,7 +80,7 @@ async function handleLogin() {
     const telegramId = await initializeTelegram();
     if (telegramId) {
         try {
-            document.getElementById('spinner').classList.add('hide');
+            
             const result = await client.checkLogin(telegramId);
             console.log(result);
             if (result.usernames && result.usernames.length > 0) {
@@ -90,9 +92,13 @@ async function handleLogin() {
         } catch (error) {
             displayResult({ error: 'Login check failed: ' + error.message }, 'error', true);
         }
+        finally {
+            document.getElementById('spinner').classList.add('hide');
+        }
     } else {
         displayResult({ error: 'Telegram ID not available' }, 'error', true);
     }
+    document.getElementById('spinner').classList.add('hide');
 }
 
 function showAccountList(usernames) {
@@ -169,6 +175,9 @@ async function logout() {
     } catch (error) {
         alert('Logout failed: ' + error.message);
     }
+    finally {
+        document.getElementById('spinner').classList.add('hide');
+    }
 }
 
 async function refreshAccountList(telegramId) {
@@ -185,6 +194,9 @@ async function refreshAccountList(telegramId) {
         }
     } catch (error) {
         console.error('Error refreshing account list:', error);
+    }
+    finally {
+        document.getElementById('spinner').classList.add('hide');
     }
 }
 
@@ -243,6 +255,9 @@ document.addEventListener('DOMContentLoaded', async function() {
                 console.error(error);
                 alert('Login failed: ' + error.message);
             }
+            finally {
+                document.getElementById('spinner').classList.add('hide');
+            }
         });
     }
 
@@ -297,6 +312,9 @@ async function fetchCommunities() {
     } catch (error) {
         console.error('Failed to fetch communities:', error);
         return [];
+    }
+    finally {
+        document.getElementById('spinner').classList.add('hide');
     }
 }
 
