@@ -386,7 +386,9 @@ function deleteDraft(id) {
 }
 
 async function initializeTelegram() {
+    console.log(window.Telegram?.WebApp?.initDataUnsafe?.user?.id);
     if (window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
+        document.getElementById('spinner').classList.remove('hide');
         return window.Telegram.WebApp.initDataUnsafe.user.id;
     }
     return await getDialogTelegramId();
