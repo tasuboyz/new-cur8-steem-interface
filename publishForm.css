@@ -1,0 +1,41 @@
+/* publishForm.css */
+#publishForm input[type="text"],
+#publishForm textarea,
+#publishForm select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+#publishForm textarea {
+    height: 150px;
+}
+
+#publishForm label {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+#publishForm button[type="submit"],
+#publishForm button[type="button"] {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#publishForm button[type="submit"]:hover,
+#publishForm button[type="button"]:hover {
+    opacity: 0.8;
+}

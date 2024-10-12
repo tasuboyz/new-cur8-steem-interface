@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet" href="login.css"> -->
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="publishForm.css">
+    <link rel="stylesheet" href="login.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
@@ -39,8 +41,8 @@
             </select>
             <label for="imageUpload">Upload Image:</label>
             <input type="file" id="imageUpload" accept="image/*" onchange="uploadImage(this.files[0])">
-            <button type="submit">Publish</button>
-            <button type="button" onclick="saveDraft()">Save as Draft</button>
+            <button id="publish-button" type="submit">Publish</button>
+            <button id="draft-button" type="button" onclick="saveDraft()">Save as Draft</button>
         </form>
     </div>
     <div id="account" class="content">
@@ -52,11 +54,11 @@
             <button id="addAccountBtn">Add New Account</button>
             <button id="logoutBtn">Logout</button>
         </div>
-        <div id="loginForm" style="display: none;">
+        <div id="loginForm" style="display: none;" class="modal">
             <h3>Login</h3>
             <input type="text" id="username" placeholder="Username">
             <input type="password" id="postingKey" placeholder="Posting Key">
-            <button id="loginBtn">Login</button>
+            <button type="button" id="loginBtn">Login</button>
         </div>
     </div>
     <div id="configurazione" class="content">

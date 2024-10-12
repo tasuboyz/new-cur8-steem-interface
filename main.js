@@ -537,40 +537,40 @@ function setTheme(theme) {
             root.style.setProperty('--background-color', '#e0ffff');
             break;
         case 'sunset':
-            root.style.setProperty('--primary-color', '#ff4500');
-            root.style.setProperty('--secondary-color', '#ff6347');
-            root.style.setProperty('--accent-color', '#ffd700');
-            root.style.setProperty('--text-color', '#ffffff');
-            root.style.setProperty('--background-color', '#ffdead');
+            root.style.setProperty('--primary-color', '#ff4500'); // Arancione scuro
+            root.style.setProperty('--secondary-color', '#ffffff'); // Bianco
+            root.style.setProperty('--accent-color', '#ffd700'); // Oro
+            root.style.setProperty('--text-color', '#000000'); // Nero
+            root.style.setProperty('--background-color', '#ffdead'); // Beige chiaro
             break;
         case 'forest':
-            root.style.setProperty('--primary-color', '#228b22');
-            root.style.setProperty('--secondary-color', '#8fbc8f');
-            root.style.setProperty('--accent-color', '#deb887');
-            root.style.setProperty('--text-color', '#ffffff');
-            root.style.setProperty('--background-color', '#2e8b57');
+            root.style.setProperty('--primary-color', '#228b22'); // Verde foresta
+            root.style.setProperty('--secondary-color', '#ffffff'); // Bianco
+            root.style.setProperty('--accent-color', '#deb887'); // Marrone chiaro
+            root.style.setProperty('--text-color', '#000000'); // Nero
+            root.style.setProperty('--background-color', '#2e8b57'); // Verde scuro
             break;
         case 'ocean':
-            root.style.setProperty('--primary-color', '#1e90ff');
-            root.style.setProperty('--secondary-color', '#00ced1');
-            root.style.setProperty('--accent-color', '#20b2aa');
-            root.style.setProperty('--text-color', '#ffffff');
-            root.style.setProperty('--background-color', '#afeeee');
+            root.style.setProperty('--primary-color', '#1e90ff'); // Blu oceano
+            root.style.setProperty('--secondary-color', '#ffffff'); // Bianco
+            root.style.setProperty('--accent-color', '#20b2aa'); // Verde acqua
+            root.style.setProperty('--text-color', '#000000'); // Nero
+            root.style.setProperty('--background-color', '#afeeee'); // Azzurro chiaro
             break;
         case 'autumn':
-            root.style.setProperty('--primary-color', '#d2691e');
-            root.style.setProperty('--secondary-color', '#ff7f50');
-            root.style.setProperty('--accent-color', '#ff4500');
-            root.style.setProperty('--text-color', '#ffffff');
-            root.style.setProperty('--background-color', '#f4a460');
+            root.style.setProperty('--primary-color', '#d2691e'); // Marrone autunnale
+            root.style.setProperty('--secondary-color', '#ffffff'); // Bianco
+            root.style.setProperty('--accent-color', '#ff4500'); // Arancione scuro
+            root.style.setProperty('--text-color', '#000000'); // Nero
+            root.style.setProperty('--background-color', '#f4a460'); // Marrone chiaro
             break;
         case 'galaxy':
-            root.style.setProperty('--primary-color', '#4b0082');
-            root.style.setProperty('--secondary-color', '#8a2be2');
-            root.style.setProperty('--accent-color', '#dda0dd');
-            root.style.setProperty('--text-color', '#ffffff');
-            root.style.setProperty('--background-color', '#483d8b');
-            break;                   
+            root.style.setProperty('--primary-color', '#4b0082'); // Indaco
+            root.style.setProperty('--secondary-color', '#ffffff'); // Bianco
+            root.style.setProperty('--accent-color', '#dda0dd'); // Viola chiaro
+            root.style.setProperty('--text-color', '#000000'); // Nero
+            root.style.setProperty('--background-color', '#483d8b'); // Blu scuro
+            break;                               
         default:
             setTheme('light');
     }

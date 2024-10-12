@@ -1,0 +1,43 @@
+.nav {
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease;
+  }
+  .nav-top {
+    top: 0;
+  }
+  .nav-bottom {
+    bottom: 0;
+  }
+  .nav button {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    color: var(--secondary-color);
+    padding: 10px 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 5px;
+  }
+  .nav button:hover {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+  }
+  .nav button i {
+    margin-bottom: 5px;
+    font-size: 24px;
+  }
+  @media (max-width: 768px) {
+    .nav {
+    }
+  }

@@ -1,0 +1,89 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 320px;
+  margin: 45px auto;
+}
+
+.login-group {
+  position: relative;
+  margin: 45px 0;
+}
+
+#loginForm input[type="text"], input[type="password"] {
+  background: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+#loginForm input:focus ~ label, input:valid ~ label {
+  top: -14px;
+  font-size: 12px;
+  color: #2196F3;
+}
+
+.login-bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.login-bar:before {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: #2196F3;
+  transition: 300ms ease all;
+  left: 0%;
+}
+
+#loginForm input:focus ~ .login-bar:before {
+  width: 100%;
+}
+
+.login-btn-box {
+  text-align: center;
+  margin: 50px 0;
+}
+
+#loginBtn button[type="button"]{
+  background: #2196F3;
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+#loginBtn button[type="button"]:hover {
+  background: #1976D2;
+  color: rgba(255, 255, 255, 0.85);
+}
+.btn-submit {
+  background: var(--hl-color);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.btn-submit:hover {
+  background: #1976D2;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-cancel {
+  background: #eee;
+}
+
+.btn-cancel:hover {
+  background: #ddd;
+  color: rgba(0, 0, 0, 0.8);
+}
