@@ -126,6 +126,8 @@ function showAccountList(usernames) {
         
         listItem.onclick = () => {
             usernameSelected = username.username;
+            const savedTheme = localStorage.getItem(`${usernameSelected}-theme`);
+            setTheme(savedTheme);
             document.querySelectorAll('.container-username').forEach(item => item.classList.remove('selected'));
             listItem.classList.add('selected');
         };
@@ -158,13 +160,10 @@ async function logout() {
         if (result.message === 'Logout successful') {
             alert(`Logged out successfully: ${usernameSelected}`);
             
-            // Recupera gli username memorizzati in sessionStorage
             let storedUsernames = JSON.parse(sessionStorage.getItem('usernames')) || [];
             
-            // Rimuovi l'username disconnesso dalla lista
             storedUsernames = storedUsernames.filter(user => user.username !== usernameSelected);
             
-            // Salva la lista aggiornata in sessionStorage
             sessionStorage.setItem('usernames', JSON.stringify(storedUsernames));
             
             await refreshAccountList(telegramId);
@@ -182,7 +181,6 @@ async function logout() {
 
 async function refreshAccountList(telegramId) {
     try {
-        // Recupera i dati memorizzati localmente
         const storedUsernames = JSON.parse(sessionStorage.getItem('usernames')) || [];
         console.log(storedUsernames);
         
@@ -206,7 +204,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         dateFormat: "Y-m-d H:i",
     });
 
-    document.getElementById('publishForm').addEventListener('submit', function(e) {
+document.getElementById('publishForm').addEventListener('submit', function(e) {
         e.preventDefault();
         alert('Post submitted for publication!');
     });
@@ -274,6 +272,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     const telegramId = await initializeTelegram();
     if (telegramId) {
         await initializeApp(telegramId);
+        const savedTheme = localStorage.getItem(`${usernameSelected}-theme`);
+        setTheme(savedTheme);
     }
 });
 
@@ -341,6 +341,10 @@ function showContent(id) {
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+//drafts
+
 function saveDraft() {
     const title = document.getElementById('title').value;
     const body = document.getElementById('body').value;
@@ -356,8 +360,8 @@ function saveDraft() {
         datetime,
         community
     };
-
     drafts.push(draft);
+    localStorage.setItem(usernameSelected, JSON.stringify(drafts));
     alert('Draft saved successfully!');
     clearForm();
 }
@@ -369,6 +373,7 @@ function clearForm() {
 function displayDrafts() {
     const draftList = document.getElementById('draft-list');
     draftList.innerHTML = '';
+    let drafts = JSON.parse(localStorage.getItem(usernameSelected)) || [];
 
     drafts.forEach(draft => {
         const draftItem = document.createElement('div');
@@ -386,6 +391,7 @@ function displayDrafts() {
 }
 
 function editDraft(id) {
+    let drafts = JSON.parse(localStorage.getItem(usernameSelected)) || [];
     const draft = drafts.find(d => d.id === id);
     if (draft) {
         document.getElementById('title').value = draft.title;
@@ -400,7 +406,9 @@ function editDraft(id) {
 }
 
 function deleteDraft(id) {
+    let drafts = JSON.parse(localStorage.getItem(usernameSelected)) || [];
     drafts = drafts.filter(d => d.id !== id);
+    localStorage.setItem(usernameSelected, JSON.stringify(drafts));
     displayDrafts();
 }
 
@@ -562,14 +570,27 @@ function setTheme(theme) {
             root.style.setProperty('--accent-color', '#dda0dd');
             root.style.setProperty('--text-color', '#ffffff');
             root.style.setProperty('--background-color', '#483d8b');
-            break;                                       
+            break;                   
+        default:
+            setTheme('light');
     }
 
     document.querySelectorAll('.theme-option').forEach(option => {
         option.classList.remove('active');
     });
     document.querySelector(`.theme-option[onclick="setTheme('${theme}')"]`).classList.add('active');
+    localStorage.setItem(`${usernameSelected}-theme`, theme);
 }
+
+function applySavedTheme() {
+    const savedTheme = localStorage.getItem(`${usernameSelected}-theme`);
+    if (savedTheme) {
+        setTheme(savedTheme);
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function saveNavPosition(position) {
   const nav = document.querySelector('.nav');
@@ -596,6 +617,10 @@ function enableNavigationButtons() {
 function initializeEnd(result) {
     console.log('Initialization completed:', result);
 }
+
+////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+//Upload Image
 
 function uploadImage(file) {
     const reader = new FileReader();
