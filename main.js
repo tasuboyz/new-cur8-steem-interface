@@ -78,6 +78,7 @@ async function handleLogin() {
     const telegramId = await initializeTelegram();
     if (telegramId) {
         try {
+            document.getElementById('spinner').classList.add('hide');
             const result = await client.checkLogin(telegramId);
             console.log(result);
             if (result.usernames && result.usernames.length > 0) {
@@ -388,7 +389,7 @@ function deleteDraft(id) {
 async function initializeTelegram() {
     console.log(window.Telegram?.WebApp?.initDataUnsafe?.user?.id);
     if (window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
-        document.getElementById('spinner').classList.remove('hide');
+        document.getElementById('spinner').classList.add('hide');
         return window.Telegram.WebApp.initDataUnsafe.user.id;
     }
     return await getDialogTelegramId();
