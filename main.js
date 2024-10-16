@@ -49,6 +49,7 @@ class ApiClient {
 }
 
 async function initializeApp(userId, fromOut) {
+    alert(window.Telegram?.WebApp?.initData)
     client = new ApiClient();
     try {
         document.getElementById('spinner').classList.remove('hide');
