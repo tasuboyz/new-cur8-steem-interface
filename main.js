@@ -640,6 +640,7 @@ function uploadImage(file) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
+                'Telegram-Data': window.Telegram?.WebApp?.initData 
             },
             body: JSON.stringify(payload)
         })
